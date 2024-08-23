@@ -1,0 +1,57 @@
+name: Brazil Orders CI/CD Pipeline to EC2 
+
+on:
+  push:
+    branches: [ "james_submission" ]
+  pull_request:
+    branches: [ "james_submission" ]
+
+jobs:
+  build_and_push_image:
+    name: Login, Build and Push Docker Image
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    - name: Login Dockerhub
+      uses: docker/login-action@v1
+      with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: remove existing image if it exists
+      run: docker image rm dammy230/brazil-order-api-deployment:latest || true
+    - name: Build the Docker Image
+      run: docker compose build
+    - name: Tag the image
+      run: docker tag brazil-order-api-deployment dammy230/brazil-order-api-deployment:latest
+    - name: Push to Docker hub
+      run: docker push dammy230/brazil-order-api-deployment:latest
+
+  deploy_to_ec2:
+    name: Pull image from Dockerhub and deploy to EC2
+    needs: build_and_push_image
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy to EC2
+      env:
+        PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+        HOST: ${{ secrets.EC2_HOST }}
+        USER: ${{ secrets.EC2_USER }}
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 400 private_key
+            ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
+              sudo su - root << EOF
+                sudo docker pull dammy230/brazil-order-api-deployment:latest
+                sudo docker rm -f james-deployment-container || true
+                sudo docker run -d -p 8080:7000 \
+                -e PORT=7000 \
+                --name james-deployment-container \
+                --entrypoint "/james-deployment-containerr/entrypoint.sh" \
+                dammy230/brazil-order-api-deploymen:latest
+        EOF
+            '
+            
