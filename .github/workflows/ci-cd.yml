@@ -50,8 +50,8 @@ jobs:
                 sudo docker run -d -p 8080:7000 \
                 -e PORT=7000 \
                 --name james-deployment-container \
-                --entrypoint "/james-deployment-containerr/entrypoint.sh" \
-                dammy230/brazil-order-api-deploymen:latest
+                --entrypoint "/james-deployment-container/entrypoint.sh" \
+                dammy230/brazil-order-api-deployment:latest
         EOF
             '
             
