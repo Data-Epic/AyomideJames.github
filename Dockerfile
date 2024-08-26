@@ -20,10 +20,3 @@ COPY src /Brazil_Order_ayomide/src
 #COPY tests /Brazil_Order_ayomide/tests
 #copy the run_tests.py file to the container
 #COPY run_tests.py /Brazil_Order_ayomide/run_tests.py
-
-# #Install DuckDB
-# RUN apt-get update && apt-get install -y wget
-# RUN apt-get update && apt-get install -y unzip
-# RUN wget https://github.com/duckdb/duckdb/releases/download/v0.8.1/duckdb_cli-linux-amd64.zip
-# RUN unzip duckdb_cli-linux-amd64.zip
-# RUN chmod +x duckdb
