@@ -17,7 +17,7 @@ EXPOSE 8080
 #copy the entire src directory, which includes the main files
 COPY src /Brazil_Order_ayomide/src
 
-COPY tests /Brazil_Order_ayomide/tests
+#COPY tests /Brazil_Order_ayomide/tests
 #copy the run_tests.py file to the container
 COPY run_tests.py /Brazil_Order_ayomide/run_tests.py
 
