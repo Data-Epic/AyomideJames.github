@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e 
-echo "Starting the application..."
+echo "Open the application..."
 python src/api.py 
 tail -f /dev/null
