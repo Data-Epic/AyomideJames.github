@@ -1,16 +1,16 @@
 version: '3'
 services:
-  brazil_order_ayomide-api-deployment:
+  brazil_order_ayomide-api-deployment1:
     ports:
       - "${API_PORT:-8080}:${CONTAINER_PORT:-7000}"
     platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-    image: brazil-order-api-deployment
+    image: brazil_order_ayomide-api-deployment1
     volumes:
       - ./data:/Brazil_Order_ayomide/data
-    container_name: james-deployment-container
+    container_name: jamess-deployment-container
     entrypoint: ["/Brazil_Order_ayomide/entrypoint.sh"]
     environment:
       - PORT=${CONTAINER_PORT:-7000}
