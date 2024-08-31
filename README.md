@@ -1,5 +1,5 @@
 # Brazilian Customers Orders ETL Pipeline and API
-This project creates an ETL (Extract, Transform, Load) workflow for Olist's Brazilian E-Commerce Public Dataset. It employs Polars for data manipulation and DuckDB as the target data store. The complete process—including data intake scripts, unit tests, and the DuckDB database—is packaged in Docker containers to facilitate deployment and scaling. The Docker setup is engineered to extract the data and offer a command-line interface (CLI) for running queries against the data using DuckDB, After all this a Flask api code  is then used to load,retreive and transform the data ingested in a json format with swagger UI. the port is 7000 and debugging was set false.
+This project creates an ETL (Extract, Transform, Load) workflow for Olist's Brazilian E-Commerce Public Dataset. It employs Polars for data manipulation and DuckDB as the target data store. The complete process—including data intake scripts, unit tests, and the DuckDB database—is packaged in Docker containers to facilitate deployment and scaling. The Docker setup is engineered to extract the data and offer a command-line interface (CLI) for running queries against the data using DuckDB, After all this a Flask api code  is then used to load,retreive and transform the data ingested in a JSON format with swagger UI. the port is 7000 and debugging was set false.
 
 ## Features
 
@@ -51,3 +51,4 @@ customer_orders_analysis/
 └── README.md
 
 ### the dataset can be downloaded from the link https://www.google.com/url?q=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1cChArUyIs9Mnr4rikM8eZbeEdTW3X4-O%2Fview%3Fusp%3Ddrive_link
+
