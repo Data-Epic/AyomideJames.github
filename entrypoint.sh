@@ -1,4 +1,5 @@
 #!/bin/bash
+#!/bin/bash
 set -e 
 echo "Open the application..."
 python src/api.py 
